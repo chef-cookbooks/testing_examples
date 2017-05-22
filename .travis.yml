@@ -10,9 +10,6 @@ addons:
 
 install: echo "skip bundle install"
 
-branches:
-  only: master
-
 services: docker
 
 env:
