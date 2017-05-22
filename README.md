@@ -1,2 +1,3 @@
 # testing_examples
-A repo of example testing files
+
+A repo of example boilerplate testing stuff
