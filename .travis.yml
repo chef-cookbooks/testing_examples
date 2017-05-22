@@ -1,0 +1,35 @@
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    sources:
+      - chef-stable-trusty
+    packages:
+      - chefdk
+
+install: echo "skip bundle install"
+
+branches:
+  only: master
+
+services: docker
+
+env:
+  matrix:
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1604
+  - INSTANCE=default-centos-6
+  - INSTANCE=default-centos-7
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+
+matrix:
+  include:
+    - script:
+      - /opt/chefdk/bin/chef exec delivery local all
+      env: UNIT_AND_LINT=1
