@@ -21,12 +21,12 @@ env:
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - eval "$(chef shell-init bash)"
 
-script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
 
 matrix:
   include:
     - script:
-      - /opt/chefdk/bin/chef exec delivery local all
+      - chef exec delivery local all
       env: UNIT_AND_LINT=1
