@@ -7,14 +7,15 @@ addons:
     packages:
       - chefdk
 
+# Don't `bundle install` which takes about 1.5 mins
 install: echo "skip bundle install"
 
 services: docker
 
 env:
   matrix:
-  - INSTANCE=default-ubuntu-1404
   - INSTANCE=default-ubuntu-1604
+  - INSTANCE=default-ubuntu-1804
   - INSTANCE=default-centos-6
   - INSTANCE=default-centos-7
 
@@ -25,7 +26,7 @@ before_script:
   - cookstyle --version
   - foodcritic --version
 
-script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
+script: KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen verify ${INSTANCE}
 
 matrix:
   include:
