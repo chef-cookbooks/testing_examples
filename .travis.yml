@@ -1,9 +1,7 @@
-sudo: required
-
 addons:
   apt:
     sources:
-      - chef-stable-trusty
+      - chef-stable-xenial
     packages:
       - chefdk
 
