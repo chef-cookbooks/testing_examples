@@ -1,3 +1,3 @@
-# testing_examples
+# Chef Infra Client Cookbook Testing Examples
 
-A repo of example boilerplate testing stuff
+This repo containers sample Travis and Test Kitchen config files for use in Chef Infra Client cookbook testing.
