@@ -76,3 +76,8 @@ platforms:
   driver:
     image: dokken/opensuse-leap-15
     pid_one_command: /bin/systemd
+
+suites:
+- name: default
+  run_list:
+  - recipe[test]
